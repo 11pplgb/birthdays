@@ -50,3 +50,8 @@ def edit_data(id):
         bday_day = request.form.get("day")
         db.execute('UPDATE birthdays set name = ? , month = ? , day = ? where id = ?', bday_name, bday_month, bday_day, id)
         return redirect("/")
+    
+@app.route("/delete/<id>", methods=["GET"])
+def delete(id):
+    db.execute("DELETE from birthdays where id = ?",id)
+    return redirect("/")    
